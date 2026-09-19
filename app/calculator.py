@@ -10,23 +10,18 @@ def calculator():
         user_input = input(">>> ")
 
         if user_input.lower() == "exit":
-            print("Goodbye!")
+            print("Exiting calculator...")
             break
 
-        parts = user_input.split()
-
-        if len(parts) != 3:
-            print("Invalid input. Please follow the format: operation number number")
-            continue
-
-        operation, num1, num2 = parts
-
         try:
-            num1 = float(num1)
-            num2 = float(num2)
+            # Now we split the input into three parts: the operation (add, subtract, etc.) and the two numbers.
+            operation, num1, num2 = user_input.split()
+            # We have to make sure the numbers are actually numbers, so we convert them to floats.
+            num1, num2 = float(num1), float(num2)
         except ValueError:
-            print("Invalid input. Please follow the format: operation number number")
-            continue
+            # If the user doesn't type something correctly, like typing letters where numbers should be, we show an error.
+            print("Invalid input. Please follow the format: <operation> <num1> <num2>")
+            continue  # This "continue" means: try again by going back to the top of the loop.
 
         if operation == "add":
             result = addition(num1, num2)
